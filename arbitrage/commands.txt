@@ -1,0 +1,4 @@
+nest g co tokens/controllers/token --flat
+nest g s tokens/services/token --flat
+
+nest g resource tokens
