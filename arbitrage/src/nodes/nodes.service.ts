@@ -1,75 +1,92 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Node } from "./entities/node.entity";
-import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import {Injectable} from "@nestjs/common";
+import {InjectRepository} from "@nestjs/typeorm";
+import {NodeApi} from "./entities/node-api.entity";
+import {DeleteResult, Repository, UpdateResult} from "typeorm";
 
 @Injectable()
 export class NodesService {
-  constructor(
-    @InjectRepository(Node)
-    private contactRepository: Repository<Node>
-  ) {
-  }
+    constructor(
+        @InjectRepository(NodeApi)
+        private contactRepository: Repository<NodeApi>
+    ) {
+    }
 
-  async create(node: Node): Promise<Node> {
-    return await this.contactRepository.save(node);
-  }
+    async create(nodeApi: NodeApi): Promise<NodeApi> {
+        return await this.contactRepository.save(nodeApi);
+    }
 
-  async findAll(): Promise<Node[]> {
-    return await this.contactRepository.find();
-  }
+    async findAll(): Promise<NodeApi[]> {
+        return await this.contactRepository.find();
+    }
 
-  async findAllByBlockchain(
-    blockchain: string
-  ): Promise<Node[]> {
-    return await this.contactRepository.findBy({ blockchain: blockchain });
-  }
+    async findAllByBlockchain(
+        blockchain: string
+    ): Promise<NodeApi[]> {
+        return await this.contactRepository.findBy({blockchain: blockchain});
+    }
 
-  async findAllByBlockchainAndNetwork(
-    blockchain: string,
-    network: string
-  ): Promise<Node[]> {
-    return await this.contactRepository.findBy({
-      blockchain: blockchain,
-      network: network
-    });
-  }
+    async findAllByBlockchainAndNetwork(
+        blockchain: string,
+        network: string
+    ): Promise<NodeApi[]> {
+        return await this.contactRepository.findBy({
+            blockchain: blockchain,
+            network: network
+        });
+    }
 
-  async findOne(
-    blockchain: string,
-    network: string,
-    address: string
-  ): Promise<Node> {
-    return await this.contactRepository.findOneBy({
-      blockchain: blockchain,
-      network: network,
-      address: address
-    });
-  }
+    async findAllByBlockchainAndNetworkAndApiName(
+        blockchain: string,
+        network: string,
+        apiName: string
+    ): Promise<NodeApi[]> {
+        return await this.contactRepository.findBy({
+            blockchain: blockchain,
+            network: network,
+            apiName: apiName
+        });
+    }
 
-  async update(
-    node: Node
-  ): Promise<UpdateResult> {
-    return await this.contactRepository.update(
-      {
-        blockchain: node.blockchain,
-        network: node.network,
-        address: node.address
-      },
-      node
-    );
-  }
+    async findOne(
+        blockchain: string,
+        network: string,
+        apiName: string,
+        projectName: string
+    ): Promise<NodeApi> {
+        return await this.contactRepository.findOneBy({
+            blockchain: blockchain,
+            network: network,
+            apiName: apiName,
+            projectName: projectName
+        });
+    }
 
-  async delete(
-    blockchain: string,
-    network: string,
-    address: string
-  ): Promise<DeleteResult> {
-    return await this.contactRepository.delete(
-      {
-        blockchain: blockchain,
-        network: network,
-        address: address
-      });
-  }
+    async update(
+        nodeApi: NodeApi
+    ): Promise<UpdateResult> {
+        return await this.contactRepository.update(
+            {
+                blockchain: nodeApi.blockchain,
+                network: nodeApi.network,
+                apiName: nodeApi.apiName,
+                projectName: nodeApi.projectName
+            },
+            nodeApi
+        );
+    }
+
+    async delete(
+        blockchain: string,
+        network: string,
+        apiName: string,
+        projectName: string
+    ): Promise<DeleteResult> {
+        return await this.contactRepository.delete(
+            {
+                blockchain: blockchain,
+                network: network,
+                apiName: apiName,
+                projectName: projectName
+            });
+    }
 }
