@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Arbitrage')
-    .setDescription('The arbitrage API description')
+    .setDescription('The arbitrages API description')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

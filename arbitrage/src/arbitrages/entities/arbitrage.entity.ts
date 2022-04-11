@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class Node {
+export class Arbitrage {
   @PrimaryColumn({ type: "varchar", name: "blockchain" })
   @ApiProperty({ example: "bsc" })
   blockchain: string;
