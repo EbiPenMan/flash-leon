@@ -1,5 +1,0 @@
-
-
-
-- setup hardhat
-    npx hardhat
