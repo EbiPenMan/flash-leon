@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.13;
+
+import "../base/SwapTemplateBase.sol";
+import "./UniswapV1SwapCallbackTemplate.sol";
+import "../../interfaces/IUniswapV2Router02.sol";
+import "./UniswapV1SwapCallbackTemplate.sol";
+import "../"
+
+
+abstract contract UniswapV1SwapTemplate is
+    SwapTemplateBase,
+    UniswapV1SwapCallbackTemplate
+{
+    IUniswapV2Router02 bakeryRouterContract;
+    address bakeryRouterAddress;
+
+    constructor() {
+        bakeryRouterAddress = Constants.get_BAYKERY_ROUTER();
+        bakeryRouterContract = IUniswapV2Router02(bakeryRouterAddress);
+    }
+
+    function uniswapV1Swap(
+        SwapDexType swapDexType,
+        address pool,
+        address token0,
+        address token1,
+        uint256 amount0,
+        uint256 amount1,
+        bytes calldata data
+    ) internal {}
+}
