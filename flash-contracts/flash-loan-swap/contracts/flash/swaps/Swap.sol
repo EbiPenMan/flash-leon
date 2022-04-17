@@ -60,5 +60,12 @@ contract Swap is
         uint256 _amount0,
         uint256 _amount1,
         bytes calldata _data
-    ) internal override {}
+    ) internal override {
+        // access control
+        require(
+            msg.sender == address(0),
+            "only permissioned UniswapV2 pair can call"
+        );
+        require(_sender == address(this), "only this contract may initiate");
+    }
 }

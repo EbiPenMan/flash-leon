@@ -4,22 +4,12 @@ pragma solidity ^0.8.13;
 
 import "../base/SwapTemplateBase.sol";
 import "./UniswapV1SwapCallbackTemplate.sol";
-import "../../interfaces/IUniswapV2Router02.sol";
-import "./UniswapV1SwapCallbackTemplate.sol";
-import "../"
-
 
 abstract contract UniswapV1SwapTemplate is
     SwapTemplateBase,
     UniswapV1SwapCallbackTemplate
 {
-    IUniswapV2Router02 bakeryRouterContract;
-    address bakeryRouterAddress;
-
-    constructor() {
-        bakeryRouterAddress = Constants.get_BAYKERY_ROUTER();
-        bakeryRouterContract = IUniswapV2Router02(bakeryRouterAddress);
-    }
+    constructor() {}
 
     function uniswapV1Swap(
         SwapDexType swapDexType,

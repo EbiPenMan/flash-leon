@@ -44,6 +44,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         url: "https://polygon-mainnet.g.alchemy.com/v2/jILmCWR38eIZ34TczkNGnq7Iotho4epB",
+        // url: "https://bsc.getblock.io/mainnet/?api_key=9e4c3936-72d9-431e-992d-6f34c02ac4ea",
       },
     },
   },

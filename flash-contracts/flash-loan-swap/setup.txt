@@ -1,1 +1,112 @@
 npm install --save-dev "hardhat@^2.9.3" "@nomiclabs/hardhat-waffle@^2.0.0" "ethereum-waffle@^3.0.0" "chai@^4.2.0" "@nomiclabs/hardhat-ethers@^2.0.0" "ethers@^5.0.0" "@nomiclabs/hardhat-etherscan@^3.0.0" "dotenv@^10.0.0" "eslint@^7.29.0" "eslint-config-prettier@^8.3.0" "eslint-config-standard@^16.0.3" "eslint-plugin-import@^2.23.4" "eslint-plugin-node@^11.1.0" "eslint-plugin-prettier@^3.4.0" "eslint-plugin-promise@^5.1.0" "hardhat-gas-reporter@^1.0.4" "prettier@^2.3.2" "prettier-plugin-solidity@^1.0.0-beta.13" "solhint@^3.3.6" "solidity-coverage@^0.7.16" "@typechain/ethers-v5@^7.0.1" "@typechain/hardhat@^2.3.0" "@typescript-eslint/eslint-plugin@^4.29.1" "@typescript-eslint/parser@^4.29.1" "@types/chai@^4.2.21" "@types/node@^12.0.0" "@types/mocha@^9.0.0" "ts-node@^10.1.0" "typechain@^5.1.2" "typescript@^4.5.2"
+
+
+npx hardhat node --fork https://polygon-mainnet.g.alchemy.com/v2/jILmCWR38eIZ34TczkNGnq7Iotho4epB
+
+
+
+
+Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 (10000 ETH)
+Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+Account #1: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 (10000 ETH)
+Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+Account #2: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc (10000 ETH)
+Private Key: 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
+
+Account #3: 0x90f79bf6eb2c4f870365e785982e1f101e93b906 (10000 ETH)
+Private Key: 0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6
+
+Account #4: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65 (10000 ETH)
+Private Key: 0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
+
+Account #5: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc (10000 ETH)
+Private Key: 0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
+
+Account #6: 0x976ea74026e726554db657fa54763abd0c3a0aa9 (10000 ETH)
+Private Key: 0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e
+
+Account #7: 0x14dc79964da2c08b23698b3d3cc7ca32193d9955 (10000 ETH)
+Private Key: 0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356
+
+Account #8: 0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f (10000 ETH)
+Private Key: 0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97
+
+Account #9: 0xa0ee7a142d267c1f36714e4a8f75612f20a79720 (10000 ETH)
+Private Key: 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6
+
+Account #10: 0xbcd4042de499d14e55001ccbb24a551f3b954096 (10000 ETH)
+Private Key: 0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897
+
+Account #11: 0x71be63f3384f5fb98995898a86b02fb2426c5788 (10000 ETH)
+Private Key: 0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82
+
+Account #12: 0xfabb0ac9d68b0b445fb7357272ff202c5651694a (10000 ETH)
+Private Key: 0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1
+
+Account #13: 0x1cbd3b2770909d4e10f157cabc84c7264073c9ec (10000 ETH)
+Private Key: 0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd
+
+Account #14: 0xdf3e18d64bc6a983f673ab319ccae4f1a57c7097 (10000 ETH)
+Private Key: 0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa
+
+Account #15: 0xcd3b766ccdd6ae721141f452c550ca635964ce71 (10000 ETH)
+Private Key: 0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61
+
+Account #16: 0x2546bcd3c84621e976d8185a91a922ae77ecec30 (10000 ETH)
+Private Key: 0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0
+
+Account #17: 0xbda5747bfd65f08deb54cb465eb87d40e51b197e (10000 ETH)
+Private Key: 0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd
+
+Account #18: 0xdd2fd4581271e230360230f9337d5c0430bf44c0 (10000 ETH)
+Private Key: 0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0
+
+Account #19: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199 (10000 ETH)
+Private Key: 0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
+
+
+---------------
+  Contract deployment: <UnrecognizedContract>
+  Contract address:    0x97fafd95bc0a332aa6123a8f8f369dfc492ff1d0
+  Transaction:         0x722adad2ae1ac6884a6e9ef749c6f17e936186bdd819b0a81071a1081fae32a2       
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            1787660 of 1787660
+  Block #27231882:     0x6e1e72e270b61e7e535c97d092e0e1c52d1d28ef0fe13f4e76da10afcb4a331a    
+----- polygan -----------------------------
+
+DAI : 0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063
+Wrapped Ether : 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619
+
+
+quickswap:
+0x476307dac3fd170166e007fcaa14f0a129721463	QuickSwap: Deployer	21.86225772 MATIC	18,850
+0xf28164a485b0b2c90639e47b0f377b4a438a16b1	QuickSwap: dQUICK Token	0 MATIC	405,969
+0x5757371414417b8c6caad45baef941abc7d3ab32	QuickSwap: Factory	0 MATIC	2,523
+0x831753dd7087cac61ab5644b308642cc1c33dc13	QuickSwap: QUICK Token	0 MATIC	328,066
+0xa5e0829caced8ffdd4de3c43696c57f7d7a678ff	QuickSwap: Router	0 MATIC	32,828,674
+
+
+SushiSwap:
+0xe2f736b7d1f6071124cbb5fc23e93d141cd24e12	SushiSwap: BentoBox	0 MATIC	2,782
+0xa3378ca78633b3b9b2255eaa26748770211163ae	SushiSwap: ComplexRewarderTime	0 MATIC	19
+0x0769fd68dfb93167989c6f7254cd0d766fb2841f	SushiSwap: MiniChef	0 MATIC	476,015
+0x1b02da8cb0d097eb8d57a175b88c7d8b47997506	SushiSwap: Router	0 MATIC	6,763,600
+0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a	SushiSwap: SUSHI Token	0 MATIC	77,950
+0xc35dadb65012ec5796536bd9864ed8773abc74c4	SushiSwap: V2 Factory
+
+curve-fi:
+0x19793b454d3afc7b454f206ffe95ade26ca6912c	Curve.fi: Aave Gauge	0 MATIC	198,526
+0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171	Curve.fi: Aave LP Token	0 MATIC	52,679
+0x445fe580ef8d70ff569ab36e80c647af338db351	Curve.fi: Aave Pool	0 MATIC	371,296
+0x1de441ef347c3e7fd512b1662b77b5bc4ac28cc8	Curve.fi: Aave Reward Claimer	0 MATIC	3
+0xc48f4653dd6a9509de44c92beb0604bea3aee714	Curve.fi: Aave Root Chain Gauge	0 MATIC	55
+0xa237034249290de2b07988ac64b96f22c0e76fe0	Curve.fi: ABurner	0 MATIC	93
+0x4473243a61b5193670d1324872368d015081822f	Curve.fi: Admin Fee Bridge (Polygon)	0 MATIC	3
+
+
+apeswap:
+ApeFactoryV2: 0xCf083Be4164828f00cAE704EC15a36D711491284
+ApeRouterV2: 0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607
