@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Web3 = require('web3');
 const BigNumber = require('bignumber.js');
-const {performance} = require('perf_hooks');
+const { performance } = require('perf_hooks');
 
 const FlashswapApi = require('./abis/index').flashswapv2;
 const BlockSubscriber = require('./src/block_subscriber');
@@ -10,6 +10,9 @@ const Prices = require('./src/prices');
 let FLASHSWAP_CONTRACT = process.env.CONTRACT;
 
 const TransactionSender = require('./src/transaction_send');
+
+const WMATIC = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270";
+
 
 const fs = require('fs');
 const util = require('util');
@@ -38,6 +41,8 @@ const prices = {};
 const flashswap = new web3.eth.Contract(FlashswapApi, FLASHSWAP_CONTRACT);
 
 const pairs = require('./src/pairs').getPairs();
+
+let trxCount = 0;
 
 const init = async () => {
     console.log('starting: ', JSON.stringify(pairs.map(p => p.name)));
@@ -99,7 +104,7 @@ const init = async () => {
                     console.log(`[${block.number}] [${new Date().toLocaleString()}]: [${provider}] [${pair.name}] Arbitrage opportunity found! Expected profit: ${(profit / 1e18).toFixed(3)} $${profitUsd.toFixed(2)} - ${percentage.toFixed(2)}%`);
 
                     const tx = flashswap.methods.start(
-                        block.number + 2,
+                        block.number + 5,
                         pair.tokenBorrow,
                         new BigNumber(pair.amountTokenPay * 1e18),
                         pair.tokenPay,
@@ -110,19 +115,25 @@ const init = async () => {
 
                     let estimateGas
                     try {
-                        estimateGas = await tx.estimateGas({from: admin});
+                        estimateGas = await tx.estimateGas({ from: admin });
                     } catch (e) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}]: [${pair.name}]`, 'gasCost error', e.message);
                         return;
                     }
+                    // console.log(`estimateGas:${estimateGas}`);
 
-                    const myGasPrice = new BigNumber(gasPrice).plus(gasPrice * 0.2212).toString();
+                    const myGasPrice = new BigNumber(gasPrice).plus(gasPrice * 0.2212).toFixed(0).toString();
+                    // console.log(`myGasPrice:${myGasPrice}`);
                     const txCostBNB = Web3.utils.toBN(estimateGas) * Web3.utils.toBN(myGasPrice);
+                    // console.log(`txCostBNB:${txCostBNB}`);
 
-                    let gasCostUsd = (txCostBNB / 1e18) * prices[BNB_MAINNET.toLowerCase()];
+                    let gasCostUsd = (txCostBNB / 1e18) * prices[WMATIC.toLowerCase()];
                     const profitMinusFeeInUsd = profitUsd - gasCostUsd;
 
-                    if (profitMinusFeeInUsd < 0.6) {
+                    console.log(`block.number:${block.number} - estimateGas:${estimateGas} - myGasPrice:${myGasPrice} - txCostBNB:${txCostBNB} - gasCostUsd:${gasCostUsd} - profitMinusFeeInUsd:${profitMinusFeeInUsd} - `);
+
+
+                    if (profitMinusFeeInUsd < 0.6 && trxCount > 0) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] stopped: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -135,7 +146,7 @@ const init = async () => {
                         }));
                     }
 
-                    if (profitMinusFeeInUsd > 0.6) {
+                    if (profitMinusFeeInUsd > 0.6 || trxCount === 0) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] and go: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -163,7 +174,10 @@ const init = async () => {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: sending transactions...`, JSON.stringify(txData))
 
                         try {
+                            console.log("sendTransaction befor");
+                            trxCount++;
                             await transactionSender.sendTransaction(txData);
+                            console.log("sendTransaction after");
                         } catch (e) {
                             console.error('transaction error', e);
                         }

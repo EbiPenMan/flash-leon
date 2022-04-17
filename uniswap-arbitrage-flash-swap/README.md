@@ -118,3 +118,5 @@ started: wallet 0xXXXX - gasPrice 5000000000 - contract owner: 0xXXXX
 
  * Designed to have multiple chain connectivities, play with some non public providers to be faster then the public once. Its all designed as "first win"
  
+
+ //2.645446554418272552 MATIC
