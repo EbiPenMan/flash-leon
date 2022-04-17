@@ -133,7 +133,7 @@ const init = async () => {
                     console.log(`block.number:${block.number} - estimateGas:${estimateGas} - myGasPrice:${myGasPrice} - txCostBNB:${txCostBNB} - gasCostUsd:${gasCostUsd} - profitMinusFeeInUsd:${profitMinusFeeInUsd} - `);
 
 
-                    if (profitMinusFeeInUsd < 0.6 && trxCount > 0) {
+                    if (profitMinusFeeInUsd < 0.6 ) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] stopped: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -146,7 +146,7 @@ const init = async () => {
                         }));
                     }
 
-                    if (profitMinusFeeInUsd > 0.6 || trxCount === 0) {
+                    if (profitMinusFeeInUsd > 0.6 ) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] and go: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),

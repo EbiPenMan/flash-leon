@@ -20,6 +20,13 @@ module.exports.getPairs = () => {
             router: "0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607",
             factory: "0xCf083Be4164828f00cAE704EC15a36D711491284"
         },
+
+        
+        {
+            dexName: "dfyn",
+            router: "0xA102072A4C07F06EC3B4900FDC4C7B80b6c57429",
+            factory: "0xE7Fb3e833eFE5F9c441105EB65Ef8b261266423B"
+        },
     ];
 
     const mainToken = [
@@ -33,11 +40,11 @@ module.exports.getPairs = () => {
         // { tokenName: "PolyDoge", address: '0x8a953cfe442c5e8855cc6c61b1293fa648bae472' },
         // { tokenName: "miMATIC", address: '0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' },
         // { tokenName: "NEAR", address: '0x72bd80445b0db58ebe3E8dB056529D4C5FAF6F2f' },
-        // { tokenName: "LINK", address: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39' },
+        { tokenName: "LINK", address: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39' },
         // { tokenName: "AAVE", address: '0xD6DF932A45C0f255f85145f286eA0b292B21C90B' },
-        { tokenName: "BANANA", address: '0x5d47baba0d66083c52009271faf3f50dcc01023c' },
-        { tokenName: "DOGIRA", address: '0xdda40cdfe4a0090f42ff49f264a831402adb801a' },
-        { tokenName: "SAND", address: '0xbbba073c31bf03b8acf7c28ef0738decf3695683' },
+        // { tokenName: "BANANA", address: '0x5d47baba0d66083c52009271faf3f50dcc01023c' },
+        // { tokenName: "DOGIRA", address: '0xdda40cdfe4a0090f42ff49f264a831402adb801a' },
+        // { tokenName: "SAND", address: '0xbbba073c31bf03b8acf7c28ef0738decf3695683' },
         // { tokenName: "KEK", address: '0x42E5E06EF5b90Fe15F853F59299Fc96259209c5C' },
         // { tokenName: "GHST", address: '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7' },
         // { tokenName: "DLYCOP", address: '0x1659fFb2d40DfB1671Ac226A0D9Dcc95A774521A' },
@@ -171,7 +178,7 @@ module.exports.getPairs = () => {
                         {
                             name: `${mainToken[i_mainToken].tokenName}/${slaveToken[i_slaveToken].tokenName} ${dex[i].dexName}>${dex[j].dexName}`,
                             tokenBorrow: mainToken[i_mainToken].address,
-                            amountTokenPay: 100000,
+                            amountTokenPay: 1000,
                             tokenPay: slaveToken[i_slaveToken].address,
                             sourceRouter: dex[i].router,
                             targetRouter: dex[j].router,
