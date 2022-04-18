@@ -1,4 +1,5 @@
 const request = require("async-request");
+const axios = require('axios');
 
 module.exports.getPrices = async () => {
     
@@ -7,6 +8,25 @@ module.exports.getPrices = async () => {
      
     // --------------- BSC -----------
     const response = await request('https://api.coingecko.com/api/v3/simple/price?ids=wbnb,busd,cake,face&vs_currencies=usd');
+
+
+
+    //pancake apis
+    // https://tokens.pancakeswap.finance/pancakeswap-top-100.json
+
+
+
+    axios.post('/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
 
     const prices = {};
 
