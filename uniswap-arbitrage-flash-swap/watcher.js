@@ -11,7 +11,7 @@ let FLASHSWAP_CONTRACT = process.env.CONTRACT;
 
 const TransactionSender = require('./src/transaction_send');
 
-const WMATIC = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270";
+const WMATIC = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
 
 
 const fs = require('fs');
@@ -133,7 +133,7 @@ const init = async () => {
                     console.log(`block.number:${block.number} - estimateGas:${estimateGas} - myGasPrice:${myGasPrice} - txCostBNB:${txCostBNB} - gasCostUsd:${gasCostUsd} - profitMinusFeeInUsd:${profitMinusFeeInUsd} - `);
 
 
-                    if (profitMinusFeeInUsd < 0.6 ) {
+                    if (profitMinusFeeInUsd < 0.1 ) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] stopped: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -146,7 +146,7 @@ const init = async () => {
                         }));
                     }
 
-                    if (profitMinusFeeInUsd > 0.6 ) {
+                    if (profitMinusFeeInUsd > 0.1 ) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] and go: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -186,11 +186,11 @@ const init = async () => {
             })
         })
 
-        try {
+        // try {
             await Promise.all(calls.map(fn => fn()));
-        } catch (e) {
-            console.log('error', e)
-        }
+        // } catch (e) {
+        //     console.log('error', e)
+        // }
 
         let number = performance.now() - start;
         if (number > 1500) {
