@@ -8,10 +8,11 @@
 
 // #bsc
 // CONTRACT=0xc06300f67f42361bb8056def2a558ef5496a33bd
+const pancakeswap_apis = require('./pancakeswap_apis');
 
 
 
-module.exports.getPairs = () => {
+module.exports.getPairs = async () => {
 
     let dex_Polygan = [
         {
@@ -31,7 +32,7 @@ module.exports.getPairs = () => {
             factory: "0xCf083Be4164828f00cAE704EC15a36D711491284"
         },
 
-        
+
         {
             dexName: "dfyn",
             router: "0xA102072A4C07F06EC3B4900FDC4C7B80b6c57429",
@@ -79,8 +80,8 @@ module.exports.getPairs = () => {
             router: "0xcF0feBd3f17CEf5b47b0cD257aCf6025c5BFf3b7",
             factory: "0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6"
         }
-    
-        
+
+
 
     ];
 
@@ -132,6 +133,44 @@ module.exports.getPairs = () => {
         }
     }
 
+    const pairsPre = await getPairPre(dex_Bsc);
 
-    return pairs
+
+    return pairsPre;
+}
+
+const getPairPre = async function (dex) {
+    const pairs = [];
+
+    const tran = await pancakeswap_apis.getOverviewTransactions();
+
+    for (let i = 0; i < dex.length; i++) {
+        for (let j = 0; j < dex.length; j++) {
+            if (j !== i) {
+                for (let k = 0; k < tran.data.swaps.length; k++) {
+
+                    let swap = tran.data.swaps[k];
+
+                    let bIndex = swap.amount0In != "0" ? "0" : "1";
+                    let gIndex = swap.amount0In != "0" ? "1" : "0";
+
+                    let pair =
+                    {
+                        name: `${swap.pair["token" + bIndex].symbol}/${swap.pair["token" + gIndex].symbol} ${dex[i].dexName}>${dex[j].dexName}`,
+                        tokenBorrow: swap.pair["token" + bIndex].id,
+                        amountTokenPay: parseFloat(swap["amount" + bIndex + "In"]),
+                        tokenPay: swap.pair["token" + gIndex].id,
+                        sourceRouter: dex[i].router,
+                        targetRouter: dex[j].router,
+                        sourceFactory: dex[i].factory,
+                    };
+                    pairs.push(pair);
+
+                }
+            }
+        }
+    }
+    // console.log("********** api : ");
+    // console.log(pairs);
+    return pairs;
 }

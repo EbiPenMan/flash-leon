@@ -271,3 +271,22 @@ module.exports.getTokens = async function () {
         console.log(error);
     }
 }
+
+
+module.exports.getAllTokens = async function () {
+    const baseUrl = "https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2"
+    try {
+        const result = await axios.post(
+            baseUrl,
+            {
+                "query": "query tokens { all: tokens(      orderBy: tradeVolumeUSD      orderDirection: desc    ) {      id      symbol      name      derivedBNB      derivedUSD      tradeVolumeUSD      totalTransactions      totalLiquidity    }   }",
+                "operationName": "tokens"
+            }
+        );
+        // console.log(JSON.stringify(result.data)); // is too much
+        return result.data;
+
+    } catch (error) {
+        console.log(error);
+    }
+}

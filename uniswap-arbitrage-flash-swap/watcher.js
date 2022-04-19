@@ -6,12 +6,14 @@ const { performance } = require('perf_hooks');
 const FlashswapApi = require('./abis/index').flashswapv2;
 const BlockSubscriber = require('./src/block_subscriber');
 const Prices = require('./src/prices');
+const pancakeswap_apis = require('./src/pancakeswap_apis');
 
 let FLASHSWAP_CONTRACT = process.env.CONTRACT;
 
 const TransactionSender = require('./src/transaction_send');
 
 const WMATIC = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
+const pairsC = require('./src/pairs');
 
 
 const fs = require('fs');
@@ -40,11 +42,11 @@ const { address: admin } = web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
 const prices = {};
 const flashswap = new web3.eth.Contract(FlashswapApi, FLASHSWAP_CONTRACT);
 
-const pairs = require('./src/pairs').getPairs();
 
 let trxCount = 0;
 
 const init = async () => {
+    const pairs = await pairsC.getPairs();
     console.log('starting: ', JSON.stringify(pairs.map(p => p.name)));
 
     const transactionSender = TransactionSender.factory(process.env.WSS_BLOCKS.split(','));
@@ -56,9 +58,9 @@ const init = async () => {
         nonce = await web3.eth.getTransactionCount(admin);
     }, 1000 * 19);
 
-    setInterval(async () => {
-        gasPrice = await web3.eth.getGasPrice()
-    }, 1000 * 60 * 3);
+    // setInterval(async () => {
+    //     gasPrice = await web3.eth.getGasPrice()
+    // }, 1000 * 60 * 3);
 
     const owner = await flashswap.methods.owner().call();
 
@@ -133,7 +135,7 @@ const init = async () => {
                     console.log(`block.number:${block.number} - estimateGas:${estimateGas} - myGasPrice:${myGasPrice} - txCostBNB:${txCostBNB} - gasCostUsd:${gasCostUsd} - profitMinusFeeInUsd:${profitMinusFeeInUsd} - `);
 
 
-                    if (profitMinusFeeInUsd < 0.1 ) {
+                    if (profitMinusFeeInUsd < 0.1) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] stopped: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -146,7 +148,7 @@ const init = async () => {
                         }));
                     }
 
-                    if (profitMinusFeeInUsd > 0.1 ) {
+                    if (profitMinusFeeInUsd > 0.1) {
                         console.log(`[${block.number}] [${new Date().toLocaleString()}] [${provider}]: [${pair.name}] and go: `, JSON.stringify({
                             profit: "$" + profitMinusFeeInUsd.toFixed(2),
                             profitWithoutGasCost: "$" + profitUsd.toFixed(2),
@@ -187,7 +189,7 @@ const init = async () => {
         })
 
         // try {
-            await Promise.all(calls.map(fn => fn()));
+        await Promise.all(calls.map(fn => fn()));
         // } catch (e) {
         //     console.log('error', e)
         // }
