@@ -7,7 +7,8 @@
 // #CONTRACT=0xb8ffB5D204250b20cdFcDB2890450AFa23686709
 
 // #bsc
-// CONTRACT=0xc06300f67f42361bb8056def2a558ef5496a33bd
+// CONTRACT=0xc06300f67f42361bb8056def2a558ef5496a33bd //old
+// CONTRACT=0x2795127297f26fa72a50B460D42AA389e4a599f3 //new
 const pancakeswap_apis = require('./pancakeswap_apis');
 
 
